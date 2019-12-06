@@ -33,31 +33,7 @@
 extern "C" {
 #endif
 
-#if defined(KVZ_DLL_EXPORTS)
-  #if !defined(PIC)
-    // Building static kvazaar library.
-    #define KVZ_PUBLIC
-  #elif defined(_WIN32) || defined(__CYGWIN__)
-    // Building kvazaar DLL on Windows.
-    #define KVZ_PUBLIC __declspec(dllexport)
-  #elif defined(__GNUC__)
-    // Building kvazaar shared library with GCC.
-    #define KVZ_PUBLIC __attribute__ ((visibility ("default")))
-  #else
-    #define KVZ_PUBLIC
-  #endif
-#else
-  #if defined(KVZ_STATIC_LIB)
-    // Using static kvazaar library.
-    #define KVZ_PUBLIC
-  #elif defined(_WIN32) || defined(__CYGWIN__)
-    // Using kvazaar DLL on Windows.
-    #define KVZ_PUBLIC __declspec(dllimport)
-  #else
-    // Using kvazaar shared library and not on Windows.
-    #define KVZ_PUBLIC
-  #endif
-#endif
+#define KVZ_PUBLIC
 
 /**
  * Maximum length of a GoP structure.
